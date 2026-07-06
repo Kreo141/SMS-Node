@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SMS-Node</string>
+    <string name="OnboardingActivity1_header">App Permissions</string>
+    <string name="OnboardingActivity1_description">System clearances required to guarantee zero-latency delivery operations background loops</string>
 </resources>

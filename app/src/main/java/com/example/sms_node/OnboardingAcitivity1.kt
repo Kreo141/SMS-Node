@@ -1,12 +1,45 @@
 package com.example.sms_node
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.widget.Toast
 
 class OnboardingAcitivity1 : AppCompatActivity() {
+    var smsAllowed = false;
+    var systemNotificationAllowed = false
+    var foregroundPersistentExecutionAllowed = false;
+    var batteryExemptionOptimizationAllowed = false;
+
+    lateinit var btnSMS: Button
+    lateinit var btnNotification: Button
+    lateinit var btnForeground: Button
+    lateinit var btnBattery: Button
+
+    private val requestSmsLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){ isGranted ->
+        if(isGranted){
+            showToast("SMS Permission Granted!")
+            smsAllowed = true
+        } else showToast("SMS Permission Denied.")
+    }
+
+    private val requestNotificationLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){ isGranted ->
+        if(isGranted){
+            showToast("Notifications Allowed!")
+            systemNotificationAllowed = true
+        } else showToast("Notifications Denied.")
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -16,5 +49,27 @@ class OnboardingAcitivity1 : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        btnSMS = findViewById<Button>(R.id.btn1)
+        btnNotification = findViewById<Button>(R.id.btn2)
+        btnForeground = findViewById<Button>(R.id.btn3)
+        btnBattery = findViewById<Button>(R.id.btn4)
+
+        btnSMS.setOnClickListener {
+            requestSmsLauncher.launch(Manifest.permission.READ_SMS)
+        }
+
+        btnNotification.setOnClickListener{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                requestNotificationLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            } else {
+                systemNotificationAllowed = true
+                showToast("Notifications are granted by default on older versions.")
+            }
+        }
+    }
+
+    private fun showToast(msg: String){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 }
