@@ -4,6 +4,17 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    
+    <style name="Theme.SMSNode.Splash" parent="Theme.SplashScreen">
+        <!-- Background color -->
+        <item name="windowSplashScreenBackground">@color/white</item>
+
+        <!-- SVG Logo -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_forwardsms</item>
+
+        <!-- Optional -->
+        <item name="postSplashScreenTheme">@style/Theme.SMSNode</item>
+    </style>
 
     <style name="Theme.SMSNode" parent="Base.Theme.SMSNode" />
 </resources>

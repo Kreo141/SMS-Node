@@ -4,4 +4,15 @@
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
+
+    <style name="Theme.SMSNode.Splash" parent="Theme.SplashScreen">
+        <!-- Background color -->
+        <item name="windowSplashScreenBackground">@color/black</item>
+
+        <!-- SVG Logo -->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo_forwardsms</item>
+
+        <!-- Optional -->
+        <item name="postSplashScreenTheme">@style/Theme.SMSNode</item>
+    </style>
 </resources>
