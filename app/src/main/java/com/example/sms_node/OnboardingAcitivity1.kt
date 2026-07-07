@@ -18,10 +18,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 
 class OnboardingAcitivity1 : AppCompatActivity() {
-    var smsAllowed = false;
+    var smsAllowed = false
     var systemNotificationAllowed = false
-    var foregroundPersistentExecutionAllowed = false;
-    var batteryExemptionOptimizationAllowed = false;
+    var foregroundPersistentExecutionAllowed = false
+    var batteryExemptionOptimizationAllowed = false
 
     lateinit var btnSMS: Button
     lateinit var btnNotification: Button
